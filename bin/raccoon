@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require_relative '../lib/raccoon'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: raccoon [options]"
+
+  opts.on('--help', 'Show help message') do
+    options[:help] = true
+  end
+
+  opts.on('-h TARGET', 'Set the target for scanning') do |target|
+    options[:target] = target
+  end
+
+  opts.on('-n TARGET', 'Run a normal scan on the target') do |target|
+    options[:scan_type] = :normal
+    options[:target] = target
+  end
+
+  opts.on('-l TARGET', 'Run a less aggressive scan on the target') do |target|
+    options[:scan_type] = :less_aggressive
+    options[:target] = target
+  end
+
+  opts.on('-a TARGET', 'Run an aggressive scan on the target') do |target|
+    options[:scan_type] = :aggressive
+    options[:target] = target
+  end
+
+  opts.on('-r SCAN_ID', 'Generate a report for the given scan ID') do |scan_id|
+    options[:report] = scan_id
+  end
+
+  opts.on('-o OUTPUT_DIR', 'Specify output directory for scan results') do |output_dir|
+    options[:output_dir] = output_dir
+  end
+end.parse!
+
+raccoon = Raccoon.new
+
+if options[:help]
+  raccoon.help
+elsif options[:target] && options[:scan_type]
+  raccoon.scan_type(options[:scan_type], options[:target], options[:output_dir])
+elsif options[:report]
+  raccoon.report(options[:report])
+elsif options[:target]
+  raccoon.target(options[:target])
+else
+  puts "Unknown command. Use --help for a list of commands."
+end
