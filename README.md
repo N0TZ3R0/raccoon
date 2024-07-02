@@ -42,7 +42,7 @@ Raccoon is a comprehensive reconnaissance tool designed for penetration testers 
     - Create a `.env` file with your OpenAI API key and tools list:
     ```dotenv
     OPENAI_API_KEY=your_openai_api_key
-    TOOLS_PILE=["nmap", "nikto", "dnsrecon", "wafw00f", "sublist3r", "theHarvester", "smbmap", "enum4linux", "dirb", "whatweb", "browsh", "lynx", "smtp-user-enum"]
+    TOOLS_PILE=["nmap", "nikto", "dnsrecon", "wafw00f", "sublist3r", "theHarvester", "smbmap", "enum4linux", "dirb", "whatweb", "smtp-user-enum"]
     ```
 
 3. **Run Setup Script**

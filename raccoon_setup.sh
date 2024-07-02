@@ -39,8 +39,6 @@ REQUIRED_TOOLS=(
   enum4linux
   dirb
   whatweb
-  browsh
-  lynx
   smtp-user-enum
 )
 
