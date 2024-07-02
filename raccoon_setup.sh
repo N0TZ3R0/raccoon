@@ -85,9 +85,27 @@ read -p "Enter your ChatGPT API key: " openai_api_key
 echo "OPENAI_API_KEY=$openai_api_key" > .env
 echo "TOOLS_PILE=[\"${REQUIRED_TOOLS[@]}\"]" >> .env
 
+# Install bundler and gems
+echo "Installing bundler and gems..."
+gem install bundler
+bundle install
+
 # Create a command for raccoon
 echo "Creating raccoon command..."
 sudo ln -s $(pwd)/bin/raccoon /usr/local/bin/raccoon
 sudo chmod +x $(pwd)/bin/raccoon
+
+# Add raccoon command to .bashrc or .zshrc
+if [ -f "$HOME/.bashrc" ]; then
+  echo "Adding raccoon command to .bashrc..."
+  echo 'export PATH="$PATH:/usr/local/bin/raccoon"' >> $HOME/.bashrc
+  source $HOME/.bashrc
+elif [ -f "$HOME/.zshrc" ]; then
+  echo "Adding raccoon command to .zshrc..."
+  echo 'export PATH="$PATH:/usr/local/bin/raccoon"' >> $HOME/.zshrc
+  source $HOME/.zshrc
+else
+  echo "No .bashrc or .zshrc file found. Please add 'export PATH=\"$PATH:/usr/local/bin/raccoon\"' to your shell configuration file manually."
+fi
 
 echo "Setup completed"

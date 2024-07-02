@@ -1,5 +1,3 @@
-# Gemfile
-
 source 'https://rubygems.org'
 
 # Gems for running external commands
@@ -23,3 +21,6 @@ gem 'yaml'
 
 # Gem for loading environment variables
 gem 'dotenv'
+
+# Gem for checking target reachability
+gem 'net-ping'
